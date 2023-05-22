@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+    <include file="db/changelog/v1/db.changelog-v1.0.0-initial-creation.xml"/>
+    <include file="db/changelog/v1/db.changelog-v1.1.0-add-currency-table.xml"/>
+    <include file="db/changelog/v1/db.changelog-v1.2.0-add-payment-intent-for-stripe-validation.xml"/>
+    <include file="db/changelog/v1/db.changelog-v1.3.0-add-point-information-as-json.xml"/>
+    <include file="db/changelog/v1/db.changelog-v1.3.1-delete-point-information-table.xml"/>
+    <include file="db/changelog/v1/db.changelog-v1.3.2-change-payment-url-to-recovery.xml"/>
+    <include file="db/changelog/v1/db.changelog-v1.3.3-remove-null-constraints-in-payment-columns.xml"/>
+
+</databaseChangeLog>

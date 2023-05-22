@@ -1,0 +1,5 @@
+rootProject.name = 'mapoteca'
+
+include 'paid-points'
+project(":paid-points").projectDir = file("./services/paid-points")
+

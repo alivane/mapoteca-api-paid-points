@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1679072472318-1" author="mguti (generated)">
+        <createTable tableName="payment">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_payment"/>
+            </column>
+            <column name="total" type="DECIMAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_url" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1679072472318-2" author="mguti (generated)">
+        <createTable tableName="point">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_point"/>
+            </column>
+            <column name="address" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="latitude" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="longitude" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="organization_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="deleted" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="DATE"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1679072472318-3" author="mguti (generated)">
+        <createTable tableName="point_date">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_pointdate"/>
+            </column>
+            <column defaultValueBoolean="false" name="processed" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="range" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="day" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="month" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="point_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1679072472318-4" author="mguti (generated)">
+        <createTable tableName="point_information">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_pointinformation"/>
+            </column>
+            <column name="day" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="month" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="population" type="DOUBLE"/>
+            <column name="households" type="DOUBLE"/>
+            <column name="density" type="DOUBLE"/>
+            <column name="residents" type="DOUBLE"/>
+            <column name="workers" type="DOUBLE"/>
+            <column name="traffic" type="DOUBLE"/>
+            <column name="motorized_traffic_per_quarter_hour" type="DOUBLE"/>
+            <column name="pedestrian_traffic_per_quarter_hour" type="DOUBLE"/>
+            <column name="motorized_traffic" type="DOUBLE"/>
+            <column name="pedestrian_traffic" type="DOUBLE"/>
+            <column name="points_of_interest_names" type="TEXT"/>
+            <column name="points_of_interest_classes" type="TEXT"/>
+            <column name="ages" type="TEXT"/>
+            <column name="socioeconomic_classification" type="TEXT"/>
+            <column name="audience_rate" type="TEXT"/>
+            <column name="distribution" type="TEXT"/>
+            <column name="sec_from_origin" type="TEXT"/>
+            <column name="origin" type="TEXT"/>
+            <column name="destination" type="TEXT"/>
+            <column name="tma" type="TEXT"/>
+            <column name="area" type="TEXT"/>
+            <column name="created_at" type="DATETIME"/>
+            <column name="point_date_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1679072472318-5" author="mguti (generated)">
+        <addForeignKeyConstraint baseColumnNames="payment_id" baseTableName="point_date"
+                                 constraintName="FK_POINTDATE_ON_PAYMENT" referencedColumnNames="id"
+                                 referencedTableName="payment"/>
+    </changeSet>
+    <changeSet id="1679072472318-6" author="mguti (generated)">
+        <addForeignKeyConstraint baseColumnNames="point_id" baseTableName="point_date"
+                                 constraintName="FK_POINTDATE_ON_POINT" referencedColumnNames="id"
+                                 referencedTableName="point"/>
+    </changeSet>
+    <changeSet id="1679072472318-7" author="mguti (generated)">
+        <addForeignKeyConstraint baseColumnNames="point_date_id" baseTableName="point_information"
+                                 constraintName="FK_POINTINFORMATION_ON_POINT_DATE" referencedColumnNames="id"
+                                 referencedTableName="point_date"/>
+    </changeSet>
+
+</databaseChangeLog>
